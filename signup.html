@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원가입 | 한옥담 HANOKDAM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2b2320; --ink-soft:#5a4f47; --cream:#f6f0e6; --cream-deep:#ede2d0; --paper:#fffaf2;
+    --gold:#c9a15a; --gold-deep:#a9813e; --green:#5c6b4a; --green-deep:#41492f; --green-light:#e6ebdd;
+    --white:#ffffff; --line:#e2d6c0; --slot-bg:#e9ddc8; --slot-line:#c7b491; --radius:16px; --red:#b6493a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans KR', sans-serif;color:var(--ink);background:var(--cream);line-height:1.7;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;}
+  h1,h2,h3,.serif{font-family:'Noto Serif KR', serif;}
+  a{text-decoration:none;color:inherit;}
+  img,svg{display:block;}
+  button{font-family:inherit;}
+  .eyebrow{letter-spacing:.16em;font-size:12px;color:var(--gold-deep);font-weight:600;text-transform:uppercase;}
+
+  .btn-primary{display:inline-flex;align-items:center;justify-content:center;padding:13px 28px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;transition:.25s ease;white-space:nowrap;border:1px solid var(--ink);background:var(--ink);color:var(--paper);}
+  .btn-primary:hover{background:var(--green-deep);border-color:var(--green-deep);}
+
+  /* ---------- HEADER ---------- */
+  header.nav{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;}
+  .nav-inner{max-width:1180px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;}
+  nav.menu{display:flex;gap:30px;font-size:13.5px;font-weight:500;}
+  .logo-center{text-align:center;}
+  .logo-center .kr{font-family:'Noto Serif KR',serif;font-weight:700;font-size:24px;}
+  .logo-center .en{font-size:9px;letter-spacing:.3em;color:var(--gold-deep);}
+  .nav-right{display:flex;gap:18px;font-size:12.5px;color:var(--ink-soft);align-items:center;}
+  .nav-right a.active{color:var(--gold-deep);font-weight:700;}
+  .nav-right a:hover{opacity:.7;text-decoration:underline;}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;}
+  .nav-toggle span{width:20px;height:2px;background:var(--ink);display:block;}
+  .mobile-menu{display:none;flex-direction:column;background:var(--paper);border-top:1px solid var(--line);padding:8px 32px 16px;}
+  .mobile-menu a{padding:11px 0;font-size:14px;border-bottom:1px solid var(--line);}
+  .mobile-menu.open{display:flex;}
+  @media(max-width:900px){
+    nav.menu{display:none;}
+    .nav-right > a{display:none;}
+    .nav-toggle{display:flex;}
+  }
+
+  /* ---------- AUTH LAYOUT ---------- */
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:56px 20px;}
+  .auth-card{width:100%;max-width:440px;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:40px 34px;box-shadow:0 12px 34px rgba(43,35,32,.06);}
+  .auth-card h1{font-size:23px;text-align:center;margin:10px 0 6px;}
+  .auth-card .sub{text-align:center;color:var(--ink-soft);font-size:13px;margin-bottom:28px;}
+  .field{margin-bottom:15px;}
+  .field label{display:block;font-size:12.5px;font-weight:600;margin-bottom:6px;color:var(--ink-soft);}
+  .field input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;background:var(--white);color:var(--ink);}
+  .field input:focus{outline:none;border-color:var(--gold-deep);}
+  .field .hint{font-size:11px;color:var(--ink-soft);margin-top:5px;}
+  .field .field-error{font-size:11.5px;color:var(--red);margin-top:5px;display:none;}
+  .field.invalid input{border-color:var(--red);}
+  .field.invalid .field-error{display:block;}
+
+  .terms-box{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:20px 0 22px;background:var(--cream-deep);}
+  .term-row{display:flex;align-items:center;gap:9px;font-size:12.5px;padding:6px 0;}
+  .term-row.all{font-weight:700;border-bottom:1px solid var(--slot-line);padding-bottom:10px;margin-bottom:4px;}
+  .term-row a{margin-left:auto;color:var(--gold-deep);font-size:11.5px;}
+  .term-row input{width:16px;height:16px;accent-color:var(--green-deep);}
+
+  .error-msg{color:var(--red);font-size:12.5px;margin:-6px 0 14px;min-height:1px;}
+  .bottom-line{text-align:center;font-size:13px;color:var(--ink-soft);margin-top:22px;}
+  .bottom-line a{color:var(--ink);font-weight:700;text-decoration:underline;}
+
+  footer.site{background:#e9ddc8;color:var(--ink-soft);text-align:center;padding:22px 0;font-size:11px;border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <nav class="menu"><a href="about.html">한옥담소개</a><a href="products.html">제품보기</a><a href="index.html#reviews">고객센터</a></nav>
+    <a href="index.html" class="logo-center"><span class="kr">한옥담</span><br><span class="en">HANOKDAM</span></a>
+    <div class="nav-right">
+      <a href="login.html">로그인</a><a href="signup.html" class="active">회원가입</a><a href="mypage.html">마이페이지</a>
+      <button class="nav-toggle" id="navToggle" aria-label="메뉴"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="products.html">제품보기</a><a href="about.html">한옥담소개</a><a href="index.html#reviews">고객센터</a><a href="login.html">로그인</a><a href="signup.html">회원가입</a><a href="mypage.html">마이페이지</a>
+  </div>
+</header>
+
+<main>
+  <div class="auth-card">
+    <p class="eyebrow" style="text-align:center;">HANOKDAM</p>
+    <h1>회원가입</h1>
+    <p class="sub">가입하고 2,000원 쿠폰을 받아보세요</p>
+
+    <form id="signupForm" novalidate>
+      <div class="field" id="f-name">
+        <label for="name">이름</label>
+        <input type="text" id="name" placeholder="홍길동">
+        <p class="field-error">이름을 입력해주세요.</p>
+      </div>
+      <div class="field" id="f-email">
+        <label for="email">이메일</label>
+        <input type="email" id="email" placeholder="you@example.com">
+        <p class="field-error">올바른 이메일 주소를 입력해주세요.</p>
+      </div>
+      <div class="field" id="f-phone">
+        <label for="phone">휴대폰 번호</label>
+        <input type="tel" id="phone" placeholder="010-0000-0000">
+        <p class="field-error">휴대폰 번호를 입력해주세요.</p>
+      </div>
+      <div class="field" id="f-password">
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" placeholder="8자 이상 입력해주세요">
+        <p class="hint">영문, 숫자 포함 8자 이상</p>
+        <p class="field-error">비밀번호는 8자 이상이어야 합니다.</p>
+      </div>
+      <div class="field" id="f-password2">
+        <label for="password2">비밀번호 확인</label>
+        <input type="password" id="password2" placeholder="비밀번호를 한 번 더 입력해주세요">
+        <p class="field-error">비밀번호가 일치하지 않습니다.</p>
+      </div>
+
+      <div class="terms-box">
+        <div class="term-row all"><input type="checkbox" id="termAll"><label for="termAll">전체 동의</label></div>
+        <div class="term-row"><input type="checkbox" id="term1"><label for="term1">[필수] 이용약관 동의</label><a href="#">보기</a></div>
+        <div class="term-row"><input type="checkbox" id="term2"><label for="term2">[필수] 개인정보 처리방침 동의</label><a href="#">보기</a></div>
+        <div class="term-row"><input type="checkbox" id="term3"><label for="term3">[선택] 마케팅 정보 수신 동의</label><a href="#">보기</a></div>
+      </div>
+      <p class="error-msg" id="errorMsg"></p>
+
+      <button type="submit" class="btn-primary" style="width:100%;">가입하기</button>
+    </form>
+
+    <p class="bottom-line">이미 계정이 있으신가요? <a href="login.html">로그인</a></p>
+  </div>
+</main>
+
+<footer class="site">© 2026 HANOKDAM. All Rights Reserved.</footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', function(){
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+
+  const termAll = document.getElementById('termAll');
+  const subTerms = [document.getElementById('term1'), document.getElementById('term2'), document.getElementById('term3')];
+  termAll.addEventListener('change', () => subTerms.forEach(t => t.checked = termAll.checked));
+  subTerms.forEach(t => t.addEventListener('change', () => {
+    termAll.checked = subTerms.every(x => x.checked);
+  }));
+
+  function markInvalid(id, invalid){
+    document.getElementById('f-' + id).classList.toggle('invalid', invalid);
+  }
+
+  document.getElementById('signupForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const password = document.getElementById('password').value;
+    const password2 = document.getElementById('password2').value;
+    const errorMsg = document.getElementById('errorMsg');
+
+    let ok = true;
+    markInvalid('name', !name); if(!name) ok = false;
+    markInvalid('email', !email.includes('@')); if(!email.includes('@')) ok = false;
+    markInvalid('phone', !phone); if(!phone) ok = false;
+    markInvalid('password', password.length < 8); if(password.length < 8) ok = false;
+    markInvalid('password2', password2 !== password || !password2); if(password2 !== password || !password2) ok = false;
+
+    if(!ok){
+      errorMsg.textContent = '입력하신 내용을 다시 확인해주세요.';
+      return;
+    }
+    if(!document.getElementById('term1').checked || !document.getElementById('term2').checked){
+      errorMsg.textContent = '필수 약관에 동의해주세요.';
+      return;
+    }
+    errorMsg.textContent = '';
+    // 이 목업에는 실제 서버가 연결되어 있지 않아, 입력값 확인 후 로그인 페이지로 이동합니다.
+    window.location.href = 'login.html?joined=1';
+  });
+</script>
+</body>
+</html>

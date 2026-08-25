@@ -81,6 +81,8 @@
   .logo-center .kr{font-family:'Noto Serif KR',serif;font-weight:700;font-size:24px;}
   .logo-center .en{font-size:9px;letter-spacing:.3em;color:var(--gold-deep);}
   .nav-right{display:flex;gap:18px;font-size:12.5px;color:var(--ink-soft);align-items:center;}
+  .nav-right a{transition:opacity .2s;}
+  .nav-right a:hover{opacity:.7;text-decoration:underline;}
   .nav-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;}
   .nav-toggle span{width:20px;height:2px;background:var(--ink);display:block;}
   .mobile-menu{display:none;flex-direction:column;background:var(--paper);border-top:1px solid var(--line);padding:8px 32px 16px;}
@@ -88,7 +90,7 @@
   .mobile-menu.open{display:flex;}
   @media(max-width:900px){
     nav.menu{display:none;}
-    .nav-right > span{display:none;}
+    .nav-right > a{display:none;}
     .nav-toggle{display:flex;}
   }
 
@@ -143,7 +145,8 @@
   .section-head h2{font-size:clamp(24px,3vw,32px);margin-top:10px;}
   .section-head p{color:var(--ink-soft);margin-top:12px;font-size:14.5px;}
   .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
-  .product-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .product-card{display:block;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s,transform .2s;}
+  .product-card:hover{box-shadow:0 10px 24px rgba(43,35,32,.1);transform:translateY(-2px);}
   .product-card .slot{min-height:190px;border-radius:0;border:none;border-bottom:1px dashed var(--slot-line);}
   .product-info{padding:16px 16px 20px;}
   .badge{display:inline-block;background:var(--ink);color:var(--paper);font-size:10.5px;padding:3px 9px;border-radius:5px;margin-bottom:8px;letter-spacing:.05em;}
@@ -289,15 +292,15 @@
 <div class="hero-wrap">
   <header class="nav nav-overlay">
     <div class="nav-inner">
-      <nav class="menu"><a href="about.html">한옥담소개</a><a>제품보기</a><a>고객센터</a></nav>
+      <nav class="menu"><a href="about.html">한옥담소개</a><a href="products.html">제품보기</a><a href="#reviews">고객센터</a></nav>
       <a href="#top" class="logo-center"><span class="kr">한옥담</span><br><span class="en">HANOKDAM</span></a>
       <div class="nav-right">
-        <span>로그인</span><span>회원가입</span><span>장바구니</span><span>마이페이지</span>
+        <a href="login.html">로그인</a><a href="signup.html">회원가입</a><a href="mypage.html">마이페이지</a>
         <button class="nav-toggle" id="navToggle" aria-label="메뉴"><span></span><span></span><span></span></button>
       </div>
     </div>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="#lineup">제품보기</a><a href="about.html">한옥담소개</a><a href="#reviews">고객센터</a>
+      <a href="products.html">제품보기</a><a href="about.html">한옥담소개</a><a href="#reviews">고객센터</a><a href="login.html">로그인</a><a href="signup.html">회원가입</a><a href="mypage.html">마이페이지</a>
     </div>
   </header>
 
@@ -309,7 +312,7 @@
       <p class="eyebrow">HANOKDAM · DRIED POWDER</p>
       <h1>한국의 신선함을<br>그대로 담다</h1>
       <p>좋은 재료를 정성껏 말려<br>더욱 간편한 분말로 완성했습니다.</p>
-      <a class="btn-primary">제품 보러가기</a>
+      <a class="btn-primary" href="products.html">제품 보러가기</a>
     </div>
   </section>
 </div>
@@ -339,22 +342,22 @@
       <p>신선한 재료를 말려 더욱 간편하게</p>
     </div>
     <div class="product-grid">
-      <div class="product-card">
+      <a class="product-card" href="products.html">
         <div class="slot photo-fill"><img data-img="garlic" alt="한옥담 마늘 분말"></div>
         <div class="product-info"><span class="badge">BEST</span><h4>한옥담 마늘 분말 80g</h4><div class="price">13,000원</div></div>
-      </div>
-      <div class="product-card">
+      </a>
+      <a class="product-card" href="products.html">
         <div class="slot photo-fill"><img data-img="perilla" alt="한옥담 깻잎 분말"></div>
         <div class="product-info"><span class="badge">BEST</span><h4>한옥담 깻잎 분말 70g</h4><div class="price">12,000원</div></div>
-      </div>
-      <div class="product-card">
+      </a>
+      <a class="product-card" href="products.html">
         <div class="slot photo-fill"><img data-img="chili" alt="한옥담 청양고추 분말 초록색 분말"></div>
         <div class="product-info"><span class="badge">BEST</span><h4>한옥담 청양고추 분말 60g</h4><div class="price">12,000원</div></div>
-      </div>
-      <div class="product-card">
+      </a>
+      <a class="product-card" href="products.html">
         <div class="slot photo-fill"><img data-img="onion" alt="한옥담 파 분말"></div>
         <div class="product-info"><span class="badge">BEST</span><h4>한옥담 대파 분말 80g</h4><div class="price">12,000원</div></div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -367,7 +370,7 @@
       <p class="eyebrow">BRAND STORY</p>
       <h2>한국의 좋은 재료,<br>더 간편하게.</h2>
       <p>자연의 시간과 정성을 담아 말린 재료를 부드럽고 고운 분말로 만들었습니다. 한옥담은 한국의 신선한 재료를 누구나 쉽게, 일상에서 편하게 사용할 수 있도록 담았습니다.</p>
-      <p style="margin-bottom:18px;"><a class="btn-outline">스토리 더보기 &gt;</a></p>
+      <p style="margin-bottom:18px;"><a class="btn-outline" href="about.html">스토리 더보기 &gt;</a></p>
       <div class="story-thumbs">
         <div class="slot photo-fill"><img data-img="perilla" alt="깻잎"></div>
         <div class="slot photo-fill"><img data-img="garlic" alt="마늘"></div>
